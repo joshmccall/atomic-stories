@@ -1,2 +1,6 @@
 /lib/
 /coverage/
+/src/serviceworker.js
+/corber/
+/build/
+/src/index.js
