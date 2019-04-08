@@ -6,6 +6,9 @@ import { ShimmerLoadDataExample } from './ShimmerLoadDataExample';
 import { PersonaBasicExample } from './Personas';
 import { ButtonDefaultExample } from './IButtonBasicExampleStyleProps';
 import { ShimmerApplicationExample, SeachCardExample } from './SeachCardExample';
+// import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+import { boolean } from '@storybook/addon-knobs';
+
 
 
 // import * as ShimmerExampleStyles from './Shimmer.Example.scss';
@@ -15,7 +18,7 @@ import { ShimmerApplicationExample, SeachCardExample } from './SeachCardExample'
 storiesOf('office-ui-fabric', module)
   .add('shimmershimmer', () => (<> <Shimmer /> </>))
   .add('PeoplePickerTypesExampleLocal', () => (<> <PeoplePickerTypesExample /> </>))
-  .add("PeoplePicker w/ delayed results", () => < PeoplePickerTypesExample delayResults={true} />)
+  .add("PeoplePicker w/ delayed results", () => < PeoplePickerTypesExample delayResults={boolean({ 'DelayedResults': true })} />)
   .add("PeoplePicker w/ delayed results + options", () => < PeoplePickerTypesExample delayResults={true} options />)
   .add("Persona", () => < ShimmerLoadDataExample />)
   .add("Persona basic", () => < PersonaBasicExample hidePersonaDetails />)
