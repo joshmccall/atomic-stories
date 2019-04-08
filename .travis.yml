@@ -9,17 +9,12 @@ before_script:
 after_success: 
   - 'npm run coverage:report'
   - 'npm run build; ls ./build; surge --project ./build --domain atomic-stories.surge.sh'
-#before_deploy: 'npm run build'
 deploy:
   - provider: script
     skip_cleanup: true
     script: npx semantic-release
     'on':
       all_branches: true
-  #- provider: surge
-  #  skip_cleanup: true
-  #  project: ./build/
-  #  domain: atomic-stories.surge.sh  
 env:
   global:
     - FORCE_COLOR=1
