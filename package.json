@@ -40,7 +40,7 @@
     "watch": "run-s 'build:js -- --watch'",
     "prepack": "run-s build",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build:storybook": "build-storybook -s public"
   },
   "devDependencies": {
     "@babel/register": "^7.4.0",

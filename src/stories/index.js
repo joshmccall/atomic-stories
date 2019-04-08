@@ -7,7 +7,9 @@ import {linkTo} from '@storybook/addon-links';
 import {Button, Welcome} from '@storybook/react/demo';
 
 storiesOf('Welcome', module)
-  .add('office-ui-fabric', () => <Button onClick={action('clicked')}>Hello Button</Button>)
+  .add('office-ui-fabric', () => {
+    return <Button onClick={action('clicked')}>Hello Button</Button>;
+  })
   .add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
 storiesOf('Button', module)
