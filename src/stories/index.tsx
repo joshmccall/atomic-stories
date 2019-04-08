@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Shimmer } from 'office-ui-fabric-react';
+import { Shimmer, Button } from 'office-ui-fabric-react';
 import { PeoplePickerTypesExample } from './IPeoplePickerExampleState';
 import { ShimmerLoadDataExample } from './ShimmerLoadDataExample';
 import { PersonaBasicExample } from './Personas';
 import { ButtonDefaultExample } from './IButtonBasicExampleStyleProps';
 import { ShimmerApplicationExample, SeachCardExample } from './SeachCardExample';
 // import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
-import { boolean, withKnobs } from '@storybook/addon-knobs';
+import { boolean, withKnobs, text } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
 
 
@@ -20,7 +21,9 @@ const stories = storiesOf('Storybook Knobs', module);
 // You can also configure `withKnobs` as a global decorator.
 stories.addDecorator(withKnobs);
 
-stories.add('shimmershimmer', () => (<> <Shimmer /> </>))
+stories
+  .add('default view', () => (<Button onClick={action('button-click')}>{text('Button Text', 'Click it or ticket!')}</Button>))
+  .add('shimmershimmer', () => (<> <Shimmer /> </>))
   .add('PeoplePickerTypesExampleLocal', () => (<> <PeoplePickerTypesExample /> </>))
   .add("PeoplePicker w/ delayed results", () => < PeoplePickerTypesExample delayResults={boolean('DelayedResults', true)} />)
   .add("PeoplePicker w/ delayed results + options", () => < PeoplePickerTypesExample delayResults={true} options />)
