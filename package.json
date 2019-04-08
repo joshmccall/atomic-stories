@@ -17,10 +17,9 @@
   "author": "Josh McCall <joshmccall221@gmail.com> (joshuamccall.com)",
   "scripts": {
     "start": "react-scripts start",
-    "build2": "react-scripts build",
-    "test2": "react-scripts test",
     "eject": "react-scripts eject",
     "test": "npm-run-all --print-label --parallel lint:* --parallel test:*",
+    "test:react": "react-scripts test --no-watch --coverage",
     "test:unit": "nyc run-s test:unit:base",
     "test:unit:base": "DEBUG=any mocha --recursive test/unit",
     "coverage:report": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
@@ -35,6 +34,7 @@
     "clean": "rimraf ./lib",
     "prebuild": "run-s clean",
     "build": "npm-run-all --print-label --parallel build:*",
+    "build:react": "react-scripts build",
     "build:js": "rollup --config",
     "watch": "run-s 'build:js -- --watch'",
     "prepack": "run-s build"
