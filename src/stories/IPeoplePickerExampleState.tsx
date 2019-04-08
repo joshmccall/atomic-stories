@@ -155,10 +155,12 @@ export class PeoplePickerTypesExample extends BaseComponent<any, IPeoplePickerEx
             </div>))}
         </div>);
     }
-    private _onItemsChange = (items: any[]): void => {
-        this.setState({
-            currentSelectedItems: items
-        });
+    private _onItemsChange = (items?: any[]): void => {
+        if (items) {
+            this.setState({
+                currentSelectedItems: items
+            });
+        }
     };
     private _onSetFocusButtonClicked = (): void => {
         if (this._picker.current) {
@@ -183,13 +185,17 @@ export class PeoplePickerTypesExample extends BaseComponent<any, IPeoplePickerEx
             this.setState({ mostRecentlyUsed: newSuggestedPeople });
         }
     };
-    private _onItemSelected = (item: IPersonaProps): Promise<IPersonaProps> => {
-        const processedItem = { ...item };
-        processedItem.text = `${item.text} (selected)`;
-        return new Promise<IPersonaProps>((resolve) => setTimeout(() => resolve(processedItem), 250));
+    private _onItemSelected = (item?: IPersonaProps): Promise<IPersonaProps> | null => {
+        if (item) {
+            const processedItem = { ...item };
+
+            processedItem.text = `${item.text} (selected)`;
+            return new Promise<IPersonaProps>((resolve) => setTimeout(() => resolve(processedItem), 250));
+        }
+        return null;
     };
-    private _onFilterChanged = (filterText: string, currentPersonas: IPersonaProps[], limitResults?: number): IPersonaProps[] | Promise<IPersonaProps[]> => {
-        if (filterText) {
+    private _onFilterChanged = (filterText: string, currentPersonas?: IPersonaProps[], limitResults?: number): IPersonaProps[] | Promise<IPersonaProps[]> => {
+        if (currentPersonas) {
             let filteredPersonas: IPersonaProps[] = this._filterPersonasByText(filterText);
             filteredPersonas = this._removeDuplicates(filteredPersonas, currentPersonas);
             filteredPersonas = limitResults ? filteredPersonas.splice(0, limitResults) : filteredPersonas;
@@ -199,19 +205,26 @@ export class PeoplePickerTypesExample extends BaseComponent<any, IPeoplePickerEx
             return [];
         }
     };
-    private _returnMostRecentlyUsed = (currentPersonas: IPersonaProps[]): IPersonaProps[] | Promise<IPersonaProps[]> => {
+    private _returnMostRecentlyUsed = (currentPersonas?: IPersonaProps[]): IPersonaProps[] | Promise<IPersonaProps[]> => {
         let { mostRecentlyUsed } = this.state;
-        mostRecentlyUsed = this._removeDuplicates(mostRecentlyUsed, currentPersonas);
+        if (currentPersonas) {
+            mostRecentlyUsed = this._removeDuplicates(mostRecentlyUsed, currentPersonas);
+        }
         return this._filterPromise(mostRecentlyUsed);
     };
-    private _returnMostRecentlyUsedWithLimit = (currentPersonas: IPersonaProps[]): IPersonaProps[] | Promise<IPersonaProps[]> => {
+    private _returnMostRecentlyUsedWithLimit = (currentPersonas?: IPersonaProps[]): IPersonaProps[] | Promise<IPersonaProps[]> => {
         let { mostRecentlyUsed } = this.state;
-        mostRecentlyUsed = this._removeDuplicates(mostRecentlyUsed, currentPersonas);
+        if (currentPersonas) {
+            mostRecentlyUsed = this._removeDuplicates(mostRecentlyUsed, currentPersonas);
+        }
         mostRecentlyUsed = mostRecentlyUsed.splice(0, 3);
         return this._filterPromise(mostRecentlyUsed);
     };
-    private _onFilterChangedWithLimit = (filterText: string, currentPersonas: IPersonaProps[]): IPersonaProps[] | Promise<IPersonaProps[]> => {
-        return this._onFilterChanged(filterText, currentPersonas, 3);
+    private _onFilterChangedWithLimit = (filterText: string, currentPersonas?: IPersonaProps[]): IPersonaProps[] | Promise<IPersonaProps[]> => {
+        if (currentPersonas) {
+            return this._onFilterChanged(filterText, currentPersonas, 3);
+        }
+        return []
     };
     private _filterPromise(personasToReturn: IPersonaProps[]): IPersonaProps[] | Promise<IPersonaProps[]> {
         if (this.state.delayResults) {
@@ -239,11 +252,15 @@ export class PeoplePickerTypesExample extends BaseComponent<any, IPeoplePickerEx
     private _removeDuplicates(personas: IPersonaProps[], possibleDupes: IPersonaProps[]) {
         return personas.filter(persona => !this._listContainsPersona(persona, possibleDupes));
     }
-    private _toggleDelayResultsChange = (ev: React.MouseEvent<HTMLElement>, toggleState: boolean): void => {
-        this.setState({ delayResults: toggleState });
+    private _toggleDelayResultsChange = (ev: React.MouseEvent<HTMLElement>, toggleState?: boolean): void => {
+        if (toggleState) {
+            this.setState({ delayResults: toggleState });
+        }
     };
-    private _dropDownSelected = (event: React.FormEvent<HTMLDivElement>, option: IDropdownOption): void => {
-        this.setState({ currentPicker: option.key });
+    private _dropDownSelected = (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption): void => {
+        if (option) {
+            this.setState({ currentPicker: option.key });
+        }
     };
     private _validateInput = (input: string): ValidationState => {
         if (input.indexOf('@') !== -1) {

@@ -92,7 +92,7 @@ export class ShimmerLoadDataExample extends React.Component<{}, IShimmerLoadData
         );
     }
 
-    private _getContentOne = (ev: React.MouseEvent<HTMLElement>, checked: boolean): void => {
+    private _getContentOne = (ev: React.MouseEvent<HTMLElement>, checked?: boolean): void => {
         const { isDataLoadedOne } = this.state;
         this.setState({
             isDataLoadedOne: checked,
@@ -100,7 +100,7 @@ export class ShimmerLoadDataExample extends React.Component<{}, IShimmerLoadData
         });
     };
 
-    private _getContentTwo = (ev: React.MouseEvent<HTMLElement>, checked: boolean): void => {
+    private _getContentTwo = (ev: React.MouseEvent<HTMLElement>, checked?: boolean): void => {
         const { isDataLoadedTwo } = this.state;
         this.setState({
             isDataLoadedTwo: checked,
