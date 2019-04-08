@@ -33,7 +33,7 @@
     "lint:travis": "travis-lint .travis.yml",
     "clean": "rimraf ./lib",
     "prebuild": "run-s clean",
-    "build": "npm-run-all --print-label --parallel build:*; npm-run-all --print-label --parallel surge:*",
+    "build": "npm-run-all --print-label --parallel build:*",
     "surge:react": "echo '\r' |  surge --domain atomic-stories.surge.sh",
     "build:react": "react-scripts build",
     "build:js": "rollup --config",
