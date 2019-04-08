@@ -1,6 +1,6 @@
 repository:
   name: atomic-stories
-  description: atomic
+  description: atomic component library
   homepage: 'https://npm.im/@joshmccall/atomic-stories'
   private: false
   has_wiki: false
