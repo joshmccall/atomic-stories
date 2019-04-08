@@ -42,11 +42,11 @@ $ npm test
 [npm-link]: https://www.npmjs.com/package/@joshmccall/atomic-stories
 [npm-badge]: https://img.shields.io/npm/v/@joshmccall/atomic-stories.svg
 [license-link]: LICENSE
-[license-badge]: https://img.shields.io/github/license/joshmccall221/atomic-stories.svg
-[ci-link]: https://travis-ci.com/joshmccall221/atomic-stories
-[ci-badge]: https://img.shields.io/travis/com/joshmccall221/atomic-stories/master.svg
-[coverage-link]: https://codecov.io/github/joshmccall221/atomic-stories
-[coverage-badge]: https://img.shields.io/codecov/c/github/joshmccall221/atomic-stories.svg
+[license-badge]: https://img.shields.io/github/license/joshmccall/atomic-stories.svg
+[ci-link]: https://travis-ci.com/joshmccall/atomic-stories
+[ci-badge]: https://img.shields.io/travis/com/joshmccall/atomic-stories/master.svg
+[coverage-link]: https://codecov.io/github/joshmccall/atomic-stories
+[coverage-badge]: https://img.shields.io/codecov/c/github/joshmccall/atomic-stories.svg
 [commit-convention-link]: https://conventionalcommits.org
 [commit-convention-badge]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg
 [commitizen-link]: http://commitizen.github.io/cz-cli/

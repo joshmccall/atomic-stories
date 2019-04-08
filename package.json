@@ -12,8 +12,8 @@
   "files": [
     "lib/"
   ],
-  "repository": "joshmccall221/atomic-stories",
-  "bugs": "https://github.com/joshmccall221/atomic-stories/issues",
+  "repository": "joshmccall/atomic-stories",
+  "bugs": "https://github.com/joshmccall/atomic-stories/issues",
   "homepage": "https://npm.im/@joshmccall/atomic-stories",
   "author": "Josh McCall <joshmccall221@gmail.com> (joshuamccall.com)",
   "scripts": {
