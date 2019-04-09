@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { BaseComponent, IColumn, ShimmeredDetailsList, SelectionMode, Toggle, buildColumns } from 'office-ui-fabric-react';
+import { BaseComponent, IColumn, ShimmeredDetailsList, SelectionMode, Toggle, buildColumns, PrimaryButton } from 'office-ui-fabric-react';
 import { PeoplePickerTypesExample } from './IPeoplePickerExampleState';
 import { ShimmerLoadDataExample } from './ShimmerLoadDataExample';
 import { PersonaBasicExample } from './Personas';
-import { ButtonDefaultExample } from './IButtonBasicExampleStyleProps';
 import { createListItems, IExampleItem } from 'office-ui-fabric-react/lib/utilities/exampleData';
 export type SeachCardExampleProps = {
     preSelected: boolean;
@@ -14,23 +13,22 @@ export type SeachCardExampleProps = {
 export class SeachCardExample extends BaseComponent<SeachCardExampleProps & any> {
     render() {
         const { preSelected, image, presence, hidePersonaDetails } = this.props;
-        return <>
-            <h1 style={{ marginBottom: 20, textAlign: 'center', width: 400 }}>CELA Contacts</h1>
-            <div style={{ boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)', margin: 15, padding: 15, width: 400 }}>
+        return <div style={{ width: '100%', margin: "auto" }}>
+            <h1 style={{ marginBottom: 20, textAlign: 'center', width: 450 }}>Search Contacts</h1>
+            <div style={{ boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)', padding: '1.25em', width: 450 }}>
                 <PeoplePickerTypesExample delayResults={true} hideHeader preSelected={preSelected} />
             </div>
-            <div style={{ boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)', padding: 5, width: 450 }}>
-                <div style={{ boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)', paddingBottom: 25, paddingRight: 25, paddingLeft: 25, width: 400 }}>
+            <div style={{ boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)', padding: '1.25em', marginTop: '2em', width: 450 }}>
+                <div style={{ boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)', padding: '1.25em', }}>
                     <div style={{ marginBottom: 10 }} />
                     {!preSelected ?
                         <ShimmerLoadDataExample /> :
                         <PersonaBasicExample presence={presence} image={image} hideHeader hidePersonaDetails={hidePersonaDetails} />}
-                    <div style={{ marginBottom: 10 }} />
 
-                    <ButtonDefaultExample primary text={"Contact"} />
+                    <PrimaryButton data-automation-id="test" allowDisabledFocus={true} text={"Contact"} style={{ width: '100%', marginTop: 10 }} onClick={() => console.log('clicked')} />
                 </div>
             </div>
-        </>;
+        </div>;
     }
 }
 const fileIcons: {
@@ -75,6 +73,7 @@ export class ShimmerApplicationExample extends BaseComponent<{
     }
     public render(): JSX.Element {
         const { items, columns, isDataLoaded } = this.state;
+        console.log({ items, columns })
         return (<div>
             <div>
                 <ShimmeredDetailsList setKey="items" items={items!} columns={columns} selectionMode={SelectionMode.none} onRenderItemColumn={this._onRenderItemColumn} enableShimmer={!isDataLoaded} listProps={{ renderedWindowsAhead: 0, renderedWindowsBehind: 0 }} />

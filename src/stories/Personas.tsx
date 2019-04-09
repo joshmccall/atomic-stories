@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IPersonaSharedProps, Persona, PersonaSize, PersonaPresence } from 'office-ui-fabric-react/lib/Persona';
 // import * as exampleStylesImport from './_exampleStyles.scss';
 // import { TestImages } from '../PeoplePicker/PeoplePickerExampleData';
-import { Link } from 'office-ui-fabric-react';
+// import { Link } from 'office-ui-fabric-react';
 import { TestImages } from './IPeoplePickerExampleState';
 
 const examplePersona = (image?: boolean): IPersonaSharedProps => ({
@@ -11,7 +11,6 @@ const examplePersona = (image?: boolean): IPersonaSharedProps => ({
     text: 'Annie Lindqvist (CELA)',
     secondaryText: 'SR DIR, BUSINESS STRATEGY MGM',
     tertiaryText: '34/5676',
-    optionalText: 'In a meeting - Available at 4:00pm',
 
 
 });
@@ -37,15 +36,12 @@ export class PersonaBasicExample extends React.Component<
 
     public render(): JSX.Element {
         const { renderPersonaDetails } = this.state;
-        const { presence, hidePersonaDetails, image, hideHeader } = this.props;
+        const { presence, hidePersonaDetails, image } = this.props;
 
         {/* <Checkbox label="Include persona details" checked={renderPersonaDetails} onChange={this._onChange} /> */ }
         return (
 
             <>
-                {!hideHeader && <>
-                    <h1>Persona (<Link href={"https://developer.microsoft.com/en-us/fabric#/components/persona#Variants"}>link</Link>) </h1>
-                </>}
                 <Persona
                     {...examplePersona(image)}
                     size={PersonaSize.size100}

@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { Shimmer, IShimmerStyleProps, IShimmerStyles, IPersonaProps, Toggle, Persona, PersonaSize, PersonaPresence, ShimmerElementsGroup, ShimmerElementType as ElemType } from 'office-ui-fabric-react';
+import { Shimmer, IShimmerStyles, IPersonaProps, Persona, PersonaSize, PersonaPresence, ShimmerElementsGroup, ShimmerElementType as ElemType } from 'office-ui-fabric-react';
 
 
 export class ShimmerStylingExample extends React.Component<{}, {}> {
@@ -21,7 +21,7 @@ export class ShimmerStylingExample extends React.Component<{}, {}> {
         );
     }
 
-    private _getShimmerStyles = (props: IShimmerStyleProps): IShimmerStyles => {
+    private _getShimmerStyles = (): IShimmerStyles => {
         return {
             shimmerWrapper: [
                 {
@@ -67,7 +67,7 @@ export class ShimmerLoadDataExample extends React.Component<{}, IShimmerLoadData
 
         return (
             <div >
-                <Toggle checked={isDataLoadedOne} onChange={this._getContentOne} onText="Toggle to show shimmer" offText="Toggle to load content" />
+                {/* <Toggle checked={isDataLoadedOne} onChange={this._getContentOne} onText="Toggle to show shimmer" offText="Toggle to load content" /> */}
                 <Shimmer isDataLoaded={isDataLoadedOne} ariaLabel={'Loading content'}>
                     <div
                         // tslint:disable-next-line:jsx-ban-props
@@ -84,7 +84,7 @@ export class ShimmerLoadDataExample extends React.Component<{}, IShimmerLoadData
                         {contentOne}
                     </div>
                 </Shimmer>
-                <Toggle checked={isDataLoadedTwo} onChange={this._getContentTwo} onText="Toggle to show shimmer" offText="Toggle to load content" />
+                {/* <Toggle checked={isDataLoadedTwo} onChange={this._getContentTwo} onText="Toggle to show shimmer" offText="Toggle to load content" /> */}
                 <Shimmer customElementsGroup={this._getCustomElements()} width={300} isDataLoaded={isDataLoadedTwo}>
                     <Persona {...examplePersona} size={PersonaSize.size40} presence={PersonaPresence.away} />
                 </Shimmer>
@@ -92,21 +92,7 @@ export class ShimmerLoadDataExample extends React.Component<{}, IShimmerLoadData
         );
     }
 
-    private _getContentOne = (ev: React.MouseEvent<HTMLElement>, checked?: boolean): void => {
-        const { isDataLoadedOne } = this.state;
-        this.setState({
-            isDataLoadedOne: checked,
-            contentOne: !isDataLoadedOne ? 'Congratulations!!! You have successfully loaded the content. ' : ''
-        });
-    };
 
-    private _getContentTwo = (ev: React.MouseEvent<HTMLElement>, checked?: boolean): void => {
-        const { isDataLoadedTwo } = this.state;
-        this.setState({
-            isDataLoadedTwo: checked,
-            examplePersona: !isDataLoadedTwo ? { ...PersonaDetails } : {}
-        });
-    };
 
     private _getCustomElements = (): JSX.Element => {
         return (

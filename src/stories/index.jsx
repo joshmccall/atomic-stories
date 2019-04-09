@@ -1,6 +1,6 @@
 import React from 'react';
 import {storiesOf, setAddon} from '@storybook/react';
-import {Shimmer, Button} from 'office-ui-fabric-react';
+import {Shimmer, Button, ShimmeredDetailsList} from 'office-ui-fabric-react';
 import {PeoplePickerTypesExample} from './IPeoplePickerExampleState';
 import {ShimmerLoadDataExample} from './ShimmerLoadDataExample';
 import {PersonaBasicExample} from './Personas';
@@ -21,6 +21,98 @@ import expect from 'expect';
 setAddon(JSXAddon);
 // import * as ShimmerExampleStyles from './Shimmer.Example.scss';
 // example files :  https://github.com/OfficeDev/office-ui-fabric-react/tree/43e45d90f0c5cad56cf1b35c8a41361176a30b40/packages/office-ui-fabric-react/src
+
+storiesOf('office-ui-fabric-react: Screens', module)
+  .addDecorator(withKnobs)
+  .addDecorator(
+    withInfo({
+      info: 'PeoplePicker (https://developer.microsoft.com/en-us/fabric#/components/peoplepicker)',
+      inline: true,
+      header: true,
+      source: false
+    })
+  )
+  .add('1', () => (
+    <div style={{paddingLeft: '150px'}}>
+      <SeachCardExample
+        {...{
+          preSelected: boolean('preSelected', true),
+          image: boolean('image', true),
+          presence: boolean('presence', true),
+          hidePersonaDetails: boolean('hidePersonalDetails', false)
+        }}
+      />
+    </div>
+  ))
+  .add('2', () => (
+    <div style={{padding: '150px', maxWidth: '650px'}}>
+      <ShimmeredDetailsList
+        setKey="items"
+        items={[
+          {
+            Name: 'Lorem ipsum dolor sit amet, c',
+            Primary: 'Lorem ipsum dolor sit amet, c',
+            Lead: 'Lorem ipsum dolor sit amet, c',
+            Actions: [<button>(R)ead</button>, <button>(U)pdate</button>, <button>(D)elete</button>],
+            maxWidth: 40
+          },
+          {
+            Name: 'Lorem ipsum dolor sit amet, c',
+            Primary: 'Lorem ipsum dolor sit amet, c',
+            Lead: 'Lorem ipsum dolor sit amet, c',
+            Actions: [<button>(R)ead</button>, <button>(U)pdate</button>, <button>(D)elete</button>],
+            maxWidth: 40
+          },
+          {
+            Name: 'Lorem ipsum dolor sit amet, c',
+            Primary: 'Lorem ipsum dolor sit amet, c',
+            Lead: 'Lorem ipsum dolor sit amet, c',
+            Actions: [<button>(R)ead</button>, <button>(U)pdate</button>, <button>(D)elete</button>],
+            maxWidth: 40
+          }
+        ]}
+        columns={[
+          {fieldName: 'Name', key: 'Name', name: 'Name', maxWidth: 40},
+          {fieldName: 'Primary', key: 'Primary', name: 'Primary', maxWidth: 40},
+          {fieldName: 'Lead', key: 'Lead', name: 'Lead', maxWidth: 40},
+          {fieldName: 'Actions', key: 'Actions', name: 'Actions', maxWidth: 40}
+        ]}
+        enableShimmer={!boolean('isDataLoaded', true)}
+      />
+      {/* <ShimmerApplicationExample isDataLoaded /> */}
+    </div>
+  ));
+
+storiesOf('office-ui-fabric-react: Screens', module)
+  .addDecorator(withKnobs)
+  .addDecorator(
+    withInfo({
+      info: 'PeoplePicker (https://developer.microsoft.com/en-us/fabric#/components/peoplepicker)',
+      inline: true,
+      header: true,
+      source: false
+    })
+  )
+  .add('SeachCardExample', () => (
+    <SeachCardExample {...{preSelected: false, image: false, presence: false, hidePersonaDetails: true}} />
+  ))
+  .add('SeachCardExample - populated', () => (
+    <div
+      style={{
+        width: '1000px',
+        paddingLeft: '150px'
+      }}
+    >
+      <SeachCardExample
+        {...{
+          preSelected: boolean('preSelected', true),
+          image: boolean('image', true),
+          presence: boolean('presence', true),
+          hidePersonaDetails: boolean('hidePersonalDetails', false)
+        }}
+      />
+    </div>
+  ));
 
 storiesOf('office-ui-fabric', module)
   .addDecorator(withKnobs)
@@ -54,15 +146,6 @@ storiesOf('office-ui-fabric', module)
   .add('Contact Groups', () => <ShimmerApplicationExample />)
   .add('Contact Groups - loading', () => <ShimmerApplicationExample />)
   .add('Contact Groups - loaded', () => <ShimmerApplicationExample isDataLoaded />);
-
-storiesOf('office-ui-fabric-react: Screens', module)
-  .addDecorator(withInfo({inline: true, header: true, source: false}))
-  .add('SeachCardExample', () => (
-    <SeachCardExample {...{preSelected: false, image: false, presence: false, hidePersonaDetails: true}} />
-  ))
-  .add('SeachCardExample - populated', () => (
-    <SeachCardExample {...{preSelected: true, image: true, presence: true, hidePersonaDetails: false}} />
-  ));
 
 storiesOf('ButtonLinkTo', module)
   .addDecorator(jsxDecorator)
