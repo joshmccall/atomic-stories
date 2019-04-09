@@ -12,6 +12,7 @@ import { withInfo } from "@storybook/addon-info";
 import { linkTo } from '@storybook/addon-links'
 import JSXAddon, { jsxDecorator } from 'storybook-addon-jsx';
 
+
 setAddon(JSXAddon);
 // import * as ShimmerExampleStyles from './Shimmer.Example.scss';
 // example files :  https://github.com/OfficeDev/office-ui-fabric-react/tree/43e45d90f0c5cad56cf1b35c8a41361176a30b40/packages/office-ui-fabric-react/src
@@ -45,3 +46,9 @@ storiesOf('ButtonLinkTo', module)
   .add('First', () => (<button onClick={linkTo('ButtonLinkTo', 'Second')}>Go to "Second"</button>))
   .add('Second', () => (<button onClick={linkTo('ButtonLinkTo', 'First')}>Go to "First"</button>))
 
+
+storiesOf('Stories viewport', module)
+  // To set a default viewport for all the stories for this component
+  .addParameters({ viewport: { defaultViewport: 'iphone6' } })
+  .add('story - iphone6', () => <></>)
+  .add('story - iphonex', () => <></>, { viewport: { defaultViewport: 'iphonex' } })
