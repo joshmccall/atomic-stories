@@ -9,23 +9,63 @@ import { ShimmerApplicationExample, SeachCardExample } from './SeachCardExample'
 // import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import { boolean, withKnobs, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import { withInfo } from "@storybook/addon-info";
 
 
 
 // import * as ShimmerExampleStyles from './Shimmer.Example.scss';
 // example files :  https://github.com/OfficeDev/office-ui-fabric-react/tree/43e45d90f0c5cad56cf1b35c8a41361176a30b40/packages/office-ui-fabric-react/src
 
-const stories = storiesOf('Storybook Knobs', module);
+const stories = storiesOf('office-ui-fabric', module);
+
+const Red = (props: JSX.IntrinsicAttributes & React.ClassAttributes<HTMLSpanElement> & React.HTMLAttributes<HTMLSpanElement>) => <span style={{ color: 'red' }} {...props} />;
+
+const TableComponent = ({ propDefinitions }: any) => {
+  console.log({ propDefinitions })
+  const props = propDefinitions.map(
+    ({ property, propType, required, description, defaultValue }: any) => {
+      return (
+        <tr key={property}>
+          <td>
+            {property}
+            {required ? <Red>*</Red> : null}
+          </td>
+          <td>{propType && propType.name}</td>
+          <td>{defaultValue}</td>
+          <td>{description}</td>
+        </tr>
+      );
+    }
+  );
+
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>type</th>
+          <th>default</th>
+          <th>description</th>
+        </tr>
+      </thead>
+      <tbody>{props}</tbody>
+    </table>
+  );
+};
 
 // Add the `withKnobs` decorator to add knobs support to your stories.
 // You can also configure `withKnobs` as a global decorator.
-stories.addDecorator(withKnobs);
-
-stories
-  .add('default view', () => (<Button onClick={action('button-click')}>{text('Button Text', 'Click it or ticket!')}</Button>))
+stories.addDecorator(withKnobs)
+  .addDecorator(withInfo({
+    inline: true,
+    header: true,
+    source: false,
+    TableComponent
+  }))
+  .add('Button - default view', () => (<Button onClick={action('button-click')}>{text('Button Text', 'Click it or ticket!', '1')}</Button>))
   .add('shimmershimmer', () => (<> <Shimmer /> </>))
   .add('PeoplePickerTypesExampleLocal', () => (<> <PeoplePickerTypesExample /> </>))
-  .add("PeoplePicker w/ delayed results", () => < PeoplePickerTypesExample delayResults={boolean('DelayedResults', true)} />)
+  .add("PeoplePicker w/ delayed results", () => < PeoplePickerTypesExample delayResults={boolean('DelayedResults', true, '1')} />)
   .add("PeoplePicker w/ delayed results + options", () => < PeoplePickerTypesExample delayResults={true} options />)
   .add("Persona", () => < ShimmerLoadDataExample />)
   .add("Persona basic", () => < PersonaBasicExample hidePersonaDetails />)
@@ -39,13 +79,18 @@ stories
   .add("Contact Groups - loaded", () => < ShimmerApplicationExample isDataLoaded />)
 
 storiesOf("office-ui-fabric-react: Screens", module)
-  .add("Find Your Contact", () => < SeachCardExample {...{
+  .addDecorator(withInfo({
+    inline: true,
+    header: true,
+    source: false,
+  }))
+  .add("SeachCardExample", () => < SeachCardExample {...{
     preSelected: false,
     image: false,
     presence: false,
     hidePersonaDetails: true
   }} />)
-  .add("Find Your Contact - populated", () => < SeachCardExample {...{
+  .add("SeachCardExample - populated", () => < SeachCardExample {...{
     preSelected: true,
     image: true,
     presence: true,
