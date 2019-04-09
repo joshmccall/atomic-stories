@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
+import { storiesOf, setAddon } from '@storybook/react';
 import { Shimmer, Button } from 'office-ui-fabric-react';
 import { PeoplePickerTypesExample } from './IPeoplePickerExampleState';
 import { ShimmerLoadDataExample } from './ShimmerLoadDataExample';
@@ -10,7 +10,9 @@ import { boolean, withKnobs, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withInfo } from "@storybook/addon-info";
 import { linkTo } from '@storybook/addon-links'
+import JSXAddon, { jsxDecorator } from 'storybook-addon-jsx';
 
+setAddon(JSXAddon);
 // import * as ShimmerExampleStyles from './Shimmer.Example.scss';
 // example files :  https://github.com/OfficeDev/office-ui-fabric-react/tree/43e45d90f0c5cad56cf1b35c8a41361176a30b40/packages/office-ui-fabric-react/src
 
@@ -39,6 +41,7 @@ storiesOf("office-ui-fabric-react: Screens", module)
   .add("SeachCardExample - populated", () => < SeachCardExample {...{ preSelected: true, image: true, presence: true, hidePersonaDetails: false }} />)
 
 storiesOf('ButtonLinkTo', module)
+  .addDecorator(jsxDecorator)
   .add('First', () => (<button onClick={linkTo('ButtonLinkTo', 'Second')}>Go to "Second"</button>))
   .add('Second', () => (<button onClick={linkTo('ButtonLinkTo', 'First')}>Go to "First"</button>))
 
