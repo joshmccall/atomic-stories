@@ -18,40 +18,6 @@ import { withInfo } from "@storybook/addon-info";
 
 const stories = storiesOf('office-ui-fabric', module);
 
-const Red = (props: JSX.IntrinsicAttributes & React.ClassAttributes<HTMLSpanElement> & React.HTMLAttributes<HTMLSpanElement>) => <span style={{ color: 'red' }} {...props} />;
-
-const TableComponent = ({ propDefinitions }: any) => {
-  console.log({ propDefinitions })
-  const props = propDefinitions.map(
-    ({ property, propType, required, description, defaultValue }: any) => {
-      return (
-        <tr key={property}>
-          <td>
-            {property}
-            {required ? <Red>*</Red> : null}
-          </td>
-          <td>{propType && propType.name}</td>
-          <td>{defaultValue}</td>
-          <td>{description}</td>
-        </tr>
-      );
-    }
-  );
-
-  return (
-    <table>
-      <thead>
-        <tr>
-          <th>name</th>
-          <th>type</th>
-          <th>default</th>
-          <th>description</th>
-        </tr>
-      </thead>
-      <tbody>{props}</tbody>
-    </table>
-  );
-};
 
 // Add the `withKnobs` decorator to add knobs support to your stories.
 // You can also configure `withKnobs` as a global decorator.
@@ -64,7 +30,7 @@ stories.addDecorator(withKnobs)
     inline: true,
     header: true,
     source: false,
-    TableComponent
+    // TableComponent
   }))
   .add('Button - default view', () => (<Button onClick={click}>{text('Button Text', 'Click it or ticket!', '1')}</Button>))
   .add('shimmershimmer', () => (<> <Shimmer /> </>))
