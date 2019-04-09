@@ -55,6 +55,10 @@ const TableComponent = ({ propDefinitions }: any) => {
 
 // Add the `withKnobs` decorator to add knobs support to your stories.
 // You can also configure `withKnobs` as a global decorator.
+const click = () => {
+  console.log('hey!')
+  action('button-click')()
+}
 stories.addDecorator(withKnobs)
   .addDecorator(withInfo({
     inline: true,
@@ -62,7 +66,7 @@ stories.addDecorator(withKnobs)
     source: false,
     TableComponent
   }))
-  .add('Button - default view', () => (<Button onClick={action('button-click')}>{text('Button Text', 'Click it or ticket!', '1')}</Button>))
+  .add('Button - default view', () => (<Button onClick={click}>{text('Button Text', 'Click it or ticket!', '1')}</Button>))
   .add('shimmershimmer', () => (<> <Shimmer /> </>))
   .add('PeoplePickerTypesExampleLocal', () => (<> <PeoplePickerTypesExample /> </>))
   .add("PeoplePicker w/ delayed results", () => < PeoplePickerTypesExample delayResults={boolean('DelayedResults', true, '1')} />)
