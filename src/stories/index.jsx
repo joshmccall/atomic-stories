@@ -1,17 +1,18 @@
 import React from 'react';
 import {storiesOf, setAddon} from '@storybook/react';
 import {Shimmer, Button, ShimmeredDetailsList} from 'office-ui-fabric-react';
-import {PeoplePickerTypesExample} from './IPeoplePickerExampleState';
+import {PeoplePickerTypesExample} from './ContactPicker';
 import {ShimmerLoadDataExample} from './ShimmerLoadDataExample';
-import {PersonaBasicExample} from './Personas';
+import {PersonaBadge} from './Personas';
 import {ButtonDefaultExample} from './IButtonBasicExampleStyleProps';
-import {ShimmerApplicationExample, SeachCardExample} from './SeachCardExample';
+import FindYourContact, {ShimmerApplicationExample, SeachCardExample} from './FindYourContact';
 import {boolean, withKnobs, text} from '@storybook/addon-knobs';
 import {action} from '@storybook/addon-actions';
 import {withInfo} from '@storybook/addon-info';
 import {linkTo} from '@storybook/addon-links';
 import JSXAddon, {jsxDecorator} from 'storybook-addon-jsx';
-
+import {initializeIcons} from '@uifabric/icons';
+initializeIcons();
 import * as specifications from 'storybook-addon-specifications';
 const {specs, describe, it} = specifications;
 
@@ -21,6 +22,29 @@ import expect from 'expect';
 setAddon(JSXAddon);
 // import * as ShimmerExampleStyles from './Shimmer.Example.scss';
 // example files :  https://github.com/OfficeDev/office-ui-fabric-react/tree/43e45d90f0c5cad56cf1b35c8a41361176a30b40/packages/office-ui-fabric-react/src
+
+const baseProductionCdnUrl = 'http://static2.sharepointonline.com/files/fabric/office-ui-fabric-react-assets/';
+
+export const TestImages = {
+  choiceGroupBarUnselected: baseProductionCdnUrl + 'choicegroup-bar-unselected.png',
+  choiceGroupBarSelected: baseProductionCdnUrl + 'choicegroup-bar-selected.png',
+  choiceGroupPieUnselected: baseProductionCdnUrl + 'choicegroup-pie-unselected.png',
+  choiceGroupPieSelected: baseProductionCdnUrl + 'choicegroup-pie-selected.png',
+  documentPreview: baseProductionCdnUrl + 'document-preview.png',
+  documentPreviewTwo: baseProductionCdnUrl + 'document-preview2.png',
+  documentPreviewThree: baseProductionCdnUrl + 'document-preview3.png',
+  iconOne: baseProductionCdnUrl + 'icon-one.png',
+  iconPpt: baseProductionCdnUrl + 'icon-ppt.png',
+  personaFemale: baseProductionCdnUrl + 'persona-female.png',
+  personaMale: baseProductionCdnUrl + 'persona-male.png'
+};
+const examplePersona = image => ({
+  imageUrl: image ? TestImages.personaFemale : undefined,
+  imageInitials: 'AL',
+  text: 'Annie Lindqvist',
+  secondaryText: 'SR DIR, BUSINESS STRATEGY MGM',
+  tertiaryText: '34/5676'
+});
 
 storiesOf('office-ui-fabric-react: Screens', module)
   .addDecorator(withKnobs)
@@ -34,13 +58,11 @@ storiesOf('office-ui-fabric-react: Screens', module)
   )
   .add('1', () => (
     <div style={{paddingLeft: '150px'}}>
-      <SeachCardExample
-        {...{
-          preSelected: boolean('preSelected', true),
-          image: boolean('image', true),
-          presence: boolean('presence', true),
-          hidePersonaDetails: boolean('hidePersonalDetails', false)
-        }}
+      <FindYourContact
+        person={examplePersona(true)}
+        peopleList={[examplePersona(true), examplePersona(true)]}
+        mostRecentlyUsed={[examplePersona(true), examplePersona(true)]}
+        currentSelectedItems={[examplePersona(true)]}
       />
     </div>
   ))
@@ -137,10 +159,10 @@ storiesOf('office-ui-fabric', module)
   ))
   .add('PeoplePicker w/ delayed results + options', () => <PeoplePickerTypesExample delayResults={true} options />)
   .add('Persona', () => <ShimmerLoadDataExample />)
-  .add('Persona basic', () => <PersonaBasicExample hidePersonaDetails />)
-  .add('Persona w/ image', () => <PersonaBasicExample hidePersonaDetails image />)
-  .add('Persona w/ image + details', () => <PersonaBasicExample image />)
-  .add('Persona w/ image + details + presence', () => <PersonaBasicExample presence image />)
+  .add('Persona basic', () => <PersonaBadge hidePersonaDetails />)
+  .add('Persona w/ image', () => <PersonaBadge hidePersonaDetails image />)
+  .add('Persona w/ image + details', () => <PersonaBadge image />)
+  .add('Persona w/ image + details + presence', () => <PersonaBadge presence image />)
   .add('Button Standard', () => <ButtonDefaultExample text={'Button'} primary={false} />)
   .add('Button Primary', () => <ButtonDefaultExample primary text={'Button'} />)
   .add('Contact Groups', () => <ShimmerApplicationExample />)

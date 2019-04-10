@@ -1,55 +1,34 @@
 import * as React from 'react';
-import { IPersonaSharedProps, Persona, PersonaSize, PersonaPresence } from 'office-ui-fabric-react/lib/Persona';
-// import * as exampleStylesImport from './_exampleStyles.scss';
-// import { TestImages } from '../PeoplePicker/PeoplePickerExampleData';
-// import { Link } from 'office-ui-fabric-react';
-import { TestImages } from './IPeoplePickerExampleState';
+import { PersonaCoin } from 'office-ui-fabric-react/lib/Persona';
+import { ShimmerLoadDataExample } from './ShimmerLoadDataExample';
+import { PrimaryButton } from 'office-ui-fabric-react';
+import { PersonProps } from './FindYourContact';
 
-const examplePersona = (image?: boolean): IPersonaSharedProps => ({
-    imageUrl: image ? TestImages.personaFemale : undefined,
-    imageInitials: 'AL',
-    text: 'Annie Lindqvist (CELA)',
-    secondaryText: 'SR DIR, BUSINESS STRATEGY MGM',
-    tertiaryText: '34/5676',
-
-
-});
-
-export class PersonaBasicExample extends React.Component<
-    {
-        image?: boolean,
-        presence?: boolean,
-        hidePersonaDetails?: boolean,
-        renderPersonaDetails?: boolean;
-        hideHeader?: boolean;
-    },
-    {
-        renderPersonaDetails?: boolean;
-    }
-    > {
-    constructor(props: {}) {
-        super(props);
-        this.state = {
-            renderPersonaDetails: true
-        };
-    }
+export class PersonaBadge extends React.Component<PersonProps> {
 
     public render(): JSX.Element {
-        const { renderPersonaDetails } = this.state;
-        const { presence, hidePersonaDetails, image } = this.props;
+        const { person } = this.props;
+        return (<div style={{ boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)', padding: 20, marginTop: '2em', width: 260 }}>
+            <div style={{ boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)', }}>
+                {/* <div style={{ marginBottom: 10 }} /> */}
+                {!person ?
+                    <ShimmerLoadDataExample /> :
 
-        {/* <Checkbox label="Include persona details" checked={renderPersonaDetails} onChange={this._onChange} /> */ }
-        return (
-
-            <>
-                <Persona
-                    {...examplePersona(image)}
-                    size={PersonaSize.size100}
-                    presence={presence ? PersonaPresence.online : undefined}
-                    hidePersonaDetails={!hidePersonaDetails ? !renderPersonaDetails : renderPersonaDetails}
-                />
-            </>
-        );
+                    <div style={{ textAlign: 'center', paddingTop: 20 }}>
+                        <PersonaCoin
+                            imageUrl={person.imageUrl}
+                            coinSize={200}
+                            style={{
+                                width: 200,
+                                margin: 'auto'
+                            }}
+                        />
+                        <h1 style={{ fontSize: 20, fontWeight: 500, lineHeight: 1.2, fontFamily: 'arial', }}>{person.text}</h1>
+                        <p style={{ color: 'grey', fontSize: 13, fontFamily: 'arial' }} >{person.secondaryText}</p>
+                        <PrimaryButton data-automation-id="test" allowDisabledFocus={true} text={"Contact"} style={{ width: '100%', marginTop: 10, marginBottom: 16 }} onClick={() => console.log('clicked')} />
+                    </div>}
+            </div>
+        </div>);
     }
 
 }

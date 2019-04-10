@@ -85,7 +85,7 @@ export class ShimmerLoadDataExample extends React.Component<{}, IShimmerLoadData
                     </div>
                 </Shimmer>
                 {/* <Toggle checked={isDataLoadedTwo} onChange={this._getContentTwo} onText="Toggle to show shimmer" offText="Toggle to load content" /> */}
-                <Shimmer customElementsGroup={this._getCustomElements()} width={300} isDataLoaded={isDataLoadedTwo}>
+                <Shimmer customElementsGroup={this._getCustomElements()} width={200} isDataLoaded={isDataLoadedTwo}>
                     <Persona {...examplePersona} size={PersonaSize.size40} presence={PersonaPresence.away} />
                 </Shimmer>
             </div>
