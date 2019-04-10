@@ -1,11 +1,10 @@
 import React from 'react';
 import {storiesOf, setAddon} from '@storybook/react';
 import {Shimmer, Button, ShimmeredDetailsList} from 'office-ui-fabric-react';
-import {PeoplePickerTypesExample} from './ContactPicker';
 import {ShimmerLoadDataExample} from './ShimmerLoadDataExample';
 import {PersonaBadge} from './Personas';
 import {ButtonDefaultExample} from './IButtonBasicExampleStyleProps';
-import FindYourContact, {ShimmerApplicationExample, SeachCardExample} from './FindYourContact';
+import FindYourContact from './FindYourContact';
 import {boolean, withKnobs, text} from '@storybook/addon-knobs';
 import {action} from '@storybook/addon-actions';
 import {withInfo} from '@storybook/addon-info';
@@ -144,20 +143,18 @@ storiesOf('office-ui-fabric', module)
   ))
   .add('shimmershimmer', () => (
     <>
-      {' '}
-      <Shimmer />{' '}
+      <Shimmer />
     </>
   ))
-  .add('PeoplePickerTypesExampleLocal', () => (
-    <>
-      {' '}
-      <PeoplePickerTypesExample />{' '}
-    </>
-  ))
-  .add('PeoplePicker w/ delayed results', () => (
-    <PeoplePickerTypesExample delayResults={boolean('DelayedResults', true, '1')} />
-  ))
-  .add('PeoplePicker w/ delayed results + options', () => <PeoplePickerTypesExample delayResults={true} options />)
+  // .add('PeoplePickerTypesExampleLocal', () => (
+  //   <>
+  //     <PeoplePickerTypesExample />
+  //   </>
+  // ))
+  // .add('PeoplePicker w/ delayed results', () => (
+  //   <PeoplePickerTypesExample delayResults={boolean('DelayedResults', true, '1')} />
+  // ))
+  // .add('PeoplePicker w/ delayed results + options', () => <PeoplePickerTypesExample delayResults={true} options />)
   .add('Persona', () => <ShimmerLoadDataExample />)
   .add('Persona basic', () => <PersonaBadge hidePersonaDetails />)
   .add('Persona w/ image', () => <PersonaBadge hidePersonaDetails image />)
