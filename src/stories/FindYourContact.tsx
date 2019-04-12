@@ -4,20 +4,30 @@ import { PersonaBadge } from './Personas';
 import ContactPicker, { IPeoplePickerExampleProps } from './ContactPicker';
 
 
-export type PersonProps = { person: IPersonaSharedProps; };
-export type FindYourContactProps = PersonProps & IPeoplePickerExampleProps;
+export type PersonListProps = { personList: PersonProps[]; };
+export type PersonProps = { person?: IPersonaSharedProps; };
+export type FindYourContactProps = { contactList: PersonProps[]; } & PersonProps & IPeoplePickerExampleProps & any;
 
-export default class extends BaseComponent<FindYourContactProps & any> {
+export default class extends BaseComponent<FindYourContactProps> {
+    renderPersonBadge(cl: { length: any; map: (arg0: (m: IPersonaSharedProps) => JSX.Element) => void; }) {
+        if (cl.length) {
+            return cl.map((c) => <PersonaBadge person={c} />)
+        }
+        return <PersonaBadge />
+
+    }
     render() {
+        console.log({ ...this.props })
+        const { currentSelectedItems, mostRecentlyUsed, peopleList, contactList } = this.props
         return (
-            <div style={{ width: '100%', margin: "auto" }}>
-                <h1 style={{ marginBottom: 20, textAlign: 'center', width: 300 }}>Search Contacts</h1>
+            <div style={{ width: '100%', margin: "auto", display: 'inline-block', textAlign: 'center' }}>
+                <h1 style={{ margin: "auto", display: 'inline-block', marginBottom: 20, textAlign: 'center', width: '100%' }}>Search Contacts</h1>
                 <ContactPicker
-                    peopleList={this.props.peopleList}
-                    mostRecentlyUsed={this.props.mostRecentlyUsed}
-                    currentSelectedItems={this.props.currentSelectedItems}
+                    peopleList={peopleList}
+                    mostRecentlyUsed={mostRecentlyUsed}
+                    currentSelectedItems={currentSelectedItems}
                 />
-                <PersonaBadge person={this.props.person} />
+                {this.renderPersonBadge(contactList)}
             </div>
         );
     }

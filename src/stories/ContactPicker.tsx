@@ -42,80 +42,76 @@ export default class extends React.Component<IPeoplePickerExampleProps, IPeopleP
     }
 
     public render() {
-        console.log({
-            peopleList: this.state.peopleList,
-            currentSelectedItems: this.state.currentSelectedItems
-        })
         return (
             <>
-                <div
-                    style={{ boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)', padding: 20, width: 260 }}
-                >
-                    <CompactPeoplePicker
-                        selectedItems={this.state.currentSelectedItems}
-                        onItemSelected={(selectedItem?: IPersonaProps | undefined) => {
-                            selectedItem && this.setState({ currentSelectedItems: [selectedItem] })
-                            return selectedItem ? selectedItem : null
-                        }}
-                        onRenderItem={(props: IPickerItemProps<IPersonaProps>) => {
-                            return <PeoplePickerItem
-                                item={{
-                                    ...props.item,
-                                    ValidationState: ValidationState.valid
-                                }}
-                                index={props.index}
-                                onRemoveItem={() => {
-                                    this.setState({ currentSelectedItems: [] })
-                                    console.log('onRemoveItem')
+                <div style={{ ...{ width: '100%', margin: "auto", display: 'inline-block', textAlign: 'center' } }} >
+                    <div style={{ boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)', padding: 20, width: 260, ...{ margin: "auto", display: 'inline-block', textAlign: 'center' } }} >
+                        <CompactPeoplePicker
+                            selectedItems={this.state.currentSelectedItems}
+                            onItemSelected={(selectedItem?: IPersonaProps | undefined) => {
+                                selectedItem && this.setState({ currentSelectedItems: [selectedItem] })
+                                return selectedItem ? selectedItem : null
+                            }}
+                            onRenderItem={(props: IPickerItemProps<IPersonaProps>) => {
+                                return <PeoplePickerItem
+                                    item={{
+                                        ...props.item,
+                                        ValidationState: ValidationState.valid
+                                    }}
+                                    index={props.index}
+                                    onRemoveItem={() => {
+                                        this.setState({ currentSelectedItems: [] })
+                                        console.log('onRemoveItem')
 
-                                }}
-                            />
-                        }}
+                                    }}
+                                />
+                            }}
 
-                        itemLimit={1}
-                        onResolveSuggestions={this._onFilterChanged}
-                        onEmptyInputFocus={this._returnMostRecentlyUsed}
-                        getTextFromItem={this._getTextFromItem}
-                        className={'ms-PeoplePicker'}
-                        defaultSelectedItems={this.state.currentSelectedItems}
-                        key={'list'}
-                        pickerSuggestionsProps={suggestionProps}
-                        onRemoveSuggestion={this._onRemoveSuggestion}
-                        onValidateInput={this._validateInput}
-                        inputProps={{
-                            onBlur: () => console.log('onBlur called'),
-                            onFocus: () => {
-                                console.log('onFocus called', this.state.currentSelectedItems)
-                                if (this.state.currentSelectedItems) {
-                                    this.setState({ currentSelectedItems: [] })
+                            itemLimit={1}
+                            onResolveSuggestions={this._onFilterChanged}
+                            onEmptyInputFocus={this._returnMostRecentlyUsed}
+                            getTextFromItem={this._getTextFromItem}
+                            className={'ms-PeoplePicker'}
+                            defaultSelectedItems={this.state.currentSelectedItems}
+                            key={'list'}
+                            pickerSuggestionsProps={suggestionProps}
+                            onRemoveSuggestion={this._onRemoveSuggestion}
+                            onValidateInput={this._validateInput}
+                            inputProps={{
+                                onBlur: () => console.log('onBlur called'),
+                                onFocus: () => {
+                                    console.log('onFocus called', this.state.currentSelectedItems)
+                                    if (this.state.currentSelectedItems) {
+                                        this.setState({ currentSelectedItems: [] })
+                                    }
+                                },
+                                'aria-label': 'People Picker'
+                            }}
+                            componentRef={this._picker}
+                            resolveDelay={300}
+                            styles={{
+                                root: {
+                                    display: 'inline-block',
+                                    width: '85%',
                                 }
-                            },
-                            'aria-label': 'People Picker'
-                        }}
-                        componentRef={this._picker}
-                        resolveDelay={300}
-                        styles={{
-                            root: {
-                                display: 'inline-block',
-                                width: '85%',
-                            }
-                        }}
-                    />
-                    <IconButton
-                        primary
-                        styles={{
-                            root: {
-                                width: '15%',
-                                height: 30,
-                                backgroundColor: 'rgb(0, 120, 212)',
-                                color: 'white',
-                                padding: 0,
-                            }
-                        }}
-                        iconProps={{ iconName: 'zoom' }}
-                        title="search"
-                        ariaLabel="search"
-                    />
+                            }}
+                        />
+                        <IconButton
+                            primary
+                            styles={{
+                                root: {
+                                    width: '15%',
+                                    height: 30,
+                                    backgroundColor: 'rgb(0, 120, 212)',
+                                    color: 'white',
+                                    padding: 0,
+                                }
+                            }}
+                            iconProps={{ iconName: 'zoom' }}
+                            title="search"
+                            ariaLabel="search"
+                        />
+                    </div>
                 </div>
             </>
         );

@@ -8,7 +8,7 @@ export class PersonaBadge extends React.Component<PersonProps> {
 
     public render(): JSX.Element {
         const { person } = this.props;
-        return (<div style={{ boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)', padding: 20, marginTop: '2em', width: 260 }}>
+        return (<div style={{ boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)', padding: 20, margin: '2em', width: 260, display: 'inline-block', textAlign: 'center' }}>
             <div style={{ boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)', }}>
                 {/* <div style={{ marginBottom: 10 }} /> */}
                 {!person ?
