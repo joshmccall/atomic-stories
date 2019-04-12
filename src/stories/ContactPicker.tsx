@@ -34,7 +34,7 @@ export default class extends React.Component<IPeoplePickerExampleProps, IPeopleP
     constructor(props: IPeoplePickerExampleProps) {
         super(props);
         this.state = {
-            delayResults: !!this.props.peopleList,
+            delayResults: !this.props.peopleList.length,
             peopleList: this.props.peopleList,
             mostRecentlyUsed: this.props.mostRecentlyUsed,
             currentSelectedItems: this.props.currentSelectedItems,
@@ -93,6 +93,7 @@ export default class extends React.Component<IPeoplePickerExampleProps, IPeopleP
                                 root: {
                                     display: 'inline-block',
                                     width: '85%',
+                                    height: 32
                                 }
                             }}
                         />
@@ -101,7 +102,7 @@ export default class extends React.Component<IPeoplePickerExampleProps, IPeopleP
                             styles={{
                                 root: {
                                     width: '15%',
-                                    height: 30,
+                                    height: 32,
                                     backgroundColor: 'rgb(0, 120, 212)',
                                     color: 'white',
                                     padding: 0,

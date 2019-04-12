@@ -39,12 +39,11 @@ storiesOf('office-ui-fabric-react: Screens', module)
     <div style={{paddingLeft: '150px'}}>
       <FindYourContact
         {...{
+          peopleList: boolean('loaded', peopleWithImages) ? peopleWithImages : [],
+          currentSelectedItems: [],
           ...any.objectWithKeys(['contactList', 'mostRecentlyUsed', ''], {
             factory: () => mockPeople(number('number of people', numOfPeople), m => object(m.text, m))
-          }),
-          contactList: peopleWithImages,
-          peopleList: peopleWithImages,
-          currentSelectedItems: []
+          })
         }}
       />
     </div>
