@@ -106,6 +106,7 @@ export default class extends React.Component<IPeoplePickerExampleProps, IPeopleP
                         styles={{
                             root: {
                                 width: '15%',
+                                height: 30,
                                 backgroundColor: 'rgb(0, 120, 212)',
                                 color: 'white',
                                 padding: 0,
