@@ -92,7 +92,7 @@ export default class extends React.Component<IPeoplePickerExampleProps, IPeopleP
                             styles={{
                                 root: {
                                     display: 'inline-block',
-                                    width: '85%',
+                                    width: '80%',
                                     height: 32
                                 }
                             }}
