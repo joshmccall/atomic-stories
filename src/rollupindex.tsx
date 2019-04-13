@@ -1,7 +1,7 @@
-import FindYourContact from "./stories/FindYourContact";
+import FindYourContact, { Test } from "./stories/FindYourContact";
 
 const test = {
-  test: () => < div > test 123!!! </div >,
+  Test,
   FindYourContact
 }
 

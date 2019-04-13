@@ -8,6 +8,12 @@ export type PersonListProps = { personList: PersonProps[]; };
 export type PersonProps = { person?: IPersonaSharedProps; };
 export type FindYourContactProps = { contactList: PersonProps[]; } & PersonProps & IPeoplePickerExampleProps & any;
 
+// () => 
+export class Test extends React.PureComponent {
+    render() {
+        return < div > test 123!!! </div >
+    }
+}
 export default class extends BaseComponent<FindYourContactProps> {
     renderPersonBadge(cl: { length: any; map: (arg0: (m: IPersonaSharedProps) => JSX.Element) => void; }) {
         if (cl.length) {
