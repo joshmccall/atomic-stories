@@ -10,7 +10,7 @@
     "access": "public"
   },
   "files": [
-    "lib/"
+    "dist/"
   ],
   "repository": "joshmccall/atomic-stories",
   "bugs": "https://github.com/joshmccall/atomic-stories/issues",
