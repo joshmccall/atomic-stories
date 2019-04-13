@@ -8,3 +8,5 @@ export function test() {
     fyc: FindYourContact
   })
 }
+
+export default FindYourContact;
