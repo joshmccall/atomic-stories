@@ -1,13 +1,6 @@
 import FindYourContact from "./stories/FindYourContact";
 
 
-export function test() {
-  // eslint-disable-next-line no-console
-  console.log('test123', { FindYourContact });
-  return ({
-    fyc: FindYourContact
-  })
+export default function fyc() {
+  return <FindYourContact />
 }
-
-export default FindYourContact;
-module.exports = FindYourContact;
