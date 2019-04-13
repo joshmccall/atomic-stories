@@ -36,17 +36,15 @@ storiesOf('office-ui-fabric-react: Screens', module)
     })
   )
   .add('1', () => (
-    <div style={{paddingLeft: '150px'}}>
-      <FindYourContact
-        {...{
-          peopleList: boolean('loaded', peopleWithImages) ? peopleWithImages : [],
-          currentSelectedItems: [],
-          ...any.objectWithKeys(['contactList', 'mostRecentlyUsed', ''], {
-            factory: () => mockPeople(number('number of people', numOfPeople), m => object(m.text, m))
-          })
-        }}
-      />
-    </div>
+    <FindYourContact
+      {...{
+        peopleList: boolean('loaded', peopleWithImages) ? peopleWithImages : [],
+        currentSelectedItems: [],
+        ...any.objectWithKeys(['contactList', 'mostRecentlyUsed', ''], {
+          factory: () => mockPeople(number('number of people', numOfPeople), m => object(m.text, m))
+        })
+      }}
+    />
   ))
   .add('2', () => (
     <div style={{padding: '150px', maxWidth: '650px'}}>
