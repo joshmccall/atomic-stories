@@ -28,7 +28,7 @@ import pkg from './package.json';
 // };
 
 export default {
-  input: 'src/rollupindex.js',
+  input: 'src/rollupindex.tsx',
   output: [
     {
       file: pkg.main,
