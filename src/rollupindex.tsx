@@ -10,3 +10,4 @@ export function test() {
 }
 
 export default FindYourContact;
+module.exports = FindYourContact;
