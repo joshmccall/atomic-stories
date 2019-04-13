@@ -1,13 +1,14 @@
 /* eslint import/no-extraneous-dependencies: ['error', {'devDependencies': true}] */
-import autoExternal from 'rollup-plugin-auto-external';
-import typescript from 'rollup-plugin-typescript2';
+// import autoExternal from 'rollup-plugin-auto-external';
+// import typescript from 'rollup-plugin-typescript2';
+// import external from 'rollup-plugin-peer-deps-external';
+// // import postcss from 'rollup-plugin-postcss-modules'
+// import postcss from 'rollup-plugin-postcss';
+// import url from 'rollup-plugin-url';
+// import svgr from '@svgr/rollup';
 import commonjs from 'rollup-plugin-commonjs';
-import external from 'rollup-plugin-peer-deps-external';
-// import postcss from 'rollup-plugin-postcss-modules'
-import postcss from 'rollup-plugin-postcss';
 import resolve from 'rollup-plugin-node-resolve';
-import url from 'rollup-plugin-url';
-import svgr from '@svgr/rollup';
+import babel from 'rollup-plugin-babel';
 
 import pkg from './package.json';
 
@@ -27,35 +28,88 @@ import pkg from './package.json';
 //   ]
 // };
 
+// const extensions = ['.js', '.jsx', '.ts', '.tsx'];
+
+// export default {
+//   input: 'src/rollupindex.tsx',
+//   output: [
+//     {
+//       file: pkg.main,
+//       format: 'cjs',
+//       exports: 'named',
+//       sourcemap: true
+//     },
+//     {
+//       file: pkg.module,
+//       format: 'es',
+//       exports: 'named',
+//       sourcemap: true
+//     }
+//   ],
+//   plugins: [
+//     // autoExternal(),
+//     external(),
+//     postcss({
+//       modules: true
+//     }),
+//     url(),
+//     svgr(),
+//     resolve(),
+//     babel({
+//       extensions,
+//       include: ['src/**/*'],
+//       exclude: 'node_modules/**'
+//     }),
+//     typescript({
+//       rollupCommonJSResolveHack: true,
+//       clean: true
+//     }),
+//     commonjs()
+//   ]
+// };
+
+// import babel from 'rollup-plugin-babel';
+// import resolve from 'rollup-plugin-node-resolve';
+// import commonjs from 'rollup-plugin-commonjs';
+
+// const isProd = process.env.NODE_ENV === 'production';
+
+const extensions = ['.js', '.jsx', '.ts', '.tsx'];
+
+const globals = {
+  react: 'React',
+  'react-dom': 'ReactDOM'
+};
+
 export default {
   input: 'src/rollupindex.tsx',
+
   output: [
     {
       file: pkg.main,
-      format: 'cjs',
-      exports: 'named',
+      format: 'umd',
+      name: 'workingConfig',
+      globals,
       sourcemap: true
     },
     {
       file: pkg.module,
       format: 'es',
-      exports: 'named',
+      globals,
       sourcemap: true
     }
   ],
   plugins: [
-    autoExternal(),
-    external(),
-    postcss({
-      modules: true
+    resolve({extensions}),
+    commonjs({
+      include: '**/node_modules/**',
+      namedExports: {}
     }),
-    url(),
-    svgr(),
-    resolve(),
-    typescript({
-      rollupCommonJSResolveHack: true,
-      clean: true
-    }),
-    commonjs()
-  ]
+    babel({
+      extensions,
+      include: ['src/**/*'],
+      exclude: 'node_modules/**'
+    })
+  ],
+  external: Object.keys(globals)
 };
