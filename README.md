@@ -14,9 +14,9 @@ atomic
 
 ### Demo
 
-[surge](http://atomic-stories.surge.sh/)
-[storybook](http://storybook-atomic-stories.surge.sh/?path=/story/button-jest--hello-world)
-[repl.it](https://repl.it/@joshmccall221/SparseCooperativeVolume)
+[![](https://img.shields.io/badge/surge-COLOR.svg)](http://atomic-stories.surge.sh/)
+[![](https://img.shields.io/badge/storybook-blue.svg)](http://storybook-atomic-stories.surge.sh/?path=/story/button-jest--hello-world)
+[![](https://img.shields.io/badge/repl.it-red.svg)](https://repl.it/@joshmccall221/SparseCooperativeVolume)
 
 ### Installation
 
